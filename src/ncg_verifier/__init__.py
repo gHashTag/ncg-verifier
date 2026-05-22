@@ -21,8 +21,8 @@ __version__ = "0.1.0-alpha"
 __author__ = "trinity-s3ai contributors"
 __license__ = "MIT"
 
+from ncg_verifier.anti_numerology import AntiNumerologyGate, FormulaResult, GateResult
 from ncg_verifier.spectral_triple import SpectralTriple
-from ncg_verifier.anti_numerology import AntiNumerologyGate, GateResult, FormulaResult
 
 __all__ = [
     "__version__",

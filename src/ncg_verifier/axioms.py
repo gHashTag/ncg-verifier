@@ -33,18 +33,17 @@ NOTE ON AXIOM 5:
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from enum import Enum
-from typing import Any, Optional
+from enum import StrEnum
+from typing import Any
 
 from ncg_verifier.spectral_triple import SpectralTriple
-
 
 # ---------------------------------------------------------------------------
 # Result types
 # ---------------------------------------------------------------------------
 
 
-class AxiomStatus(str, Enum):
+class AxiomStatus(StrEnum):
     """Status codes for axiom compliance checks."""
     VERIFIED = "VERIFIED"      # Fully proved (Qed, no PHYSICAL_AXIOM deps)
     PARTIAL = "PARTIAL"        # Some conditions proved, others open
@@ -61,7 +60,7 @@ class AxiomResult:
     axiom_name: str
     status: AxiomStatus
     evidence: str = ""
-    coq_reference: Optional[str] = None
+    coq_reference: str | None = None
     notes: str = ""
 
     def __str__(self) -> str:
@@ -81,7 +80,7 @@ class AxiomReport:
             lines.append(f"  {r}")
         return "\n".join(lines)
 
-    def get(self, axiom_number: int) -> Optional[AxiomResult]:
+    def get(self, axiom_number: int) -> AxiomResult | None:
         for r in self.results:
             if r.axiom_number == axiom_number:
                 return r

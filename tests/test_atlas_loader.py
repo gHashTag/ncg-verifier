@@ -15,7 +15,6 @@ Covers:
 
 from __future__ import annotations
 
-import textwrap
 from pathlib import Path
 
 import pytest
@@ -239,7 +238,7 @@ class TestCrossReferences:
         from ncg_verifier.atlas_loader import cross_reference_check
         broken = cross_reference_check(entries)
         assert broken == [], (
-            f"Broken cross-references found:\n"
+            "Broken cross-references found:\n"
             + "\n".join(str(b) for b in broken)
         )
 

@@ -23,11 +23,9 @@ DESIGN PRINCIPLE:
 
 from __future__ import annotations
 
-import sys
-import textwrap
 import tempfile
+import textwrap
 from pathlib import Path
-
 
 # ============================================================================
 # 1. Package import and version
@@ -53,7 +51,12 @@ class TestPackageImport:
 
     def test_top_level_exports(self):
         """Key names are accessible from the top-level package."""
-        from ncg_verifier import SpectralTriple, AntiNumerologyGate, GateResult, FormulaResult
+        from ncg_verifier import (
+            AntiNumerologyGate,
+            FormulaResult,
+            GateResult,
+            SpectralTriple,
+        )
         assert SpectralTriple is not None
         assert AntiNumerologyGate is not None
         assert GateResult is not None
@@ -67,15 +70,17 @@ class TestPackageImport:
 class TestSpectralTripleABC:
     def test_cannot_instantiate_abstract(self):
         """SpectralTriple is abstract — cannot instantiate directly."""
-        from ncg_verifier.spectral_triple import SpectralTriple
         import pytest
+
+        from ncg_verifier.spectral_triple import SpectralTriple
         with pytest.raises(TypeError):
             SpectralTriple()  # type: ignore[abstract]
 
     def test_concrete_subclass_requires_all_properties(self):
         """A concrete subclass must implement all abstract properties."""
-        from ncg_verifier.spectral_triple import SpectralTriple
         import pytest
+
+        from ncg_verifier.spectral_triple import SpectralTriple
 
         class IncompleteTriple(SpectralTriple):
             # Missing: hilbert_space, dirac, gamma, J
@@ -230,7 +235,7 @@ class TestAxiomCheckers:
         spectral triple fails the first-order condition. The checker should
         return OPEN, never VERIFIED, for a stub triple.
         """
-        from ncg_verifier.axioms import check_first_order, AxiomStatus
+        from ncg_verifier.axioms import AxiomStatus, check_first_order
 
         triple = self._make_h4_like_triple()
         result = check_first_order(triple)
@@ -267,7 +272,7 @@ class TestAxiomCheckers:
 
     def test_check_all_axioms_axiom5_is_open(self):
         """In check_all_axioms, axiom 5 must be OPEN for the H4-like triple."""
-        from ncg_verifier.axioms import check_all_axioms, AxiomStatus
+        from ncg_verifier.axioms import AxiomStatus, check_all_axioms
 
         triple = self._make_h4_like_triple()
         report = check_all_axioms(triple)
@@ -291,7 +296,7 @@ class TestAxiomCheckers:
 
     def test_stub_axioms_have_notes(self):
         """All stub axiom results have non-empty notes explaining the stub."""
-        from ncg_verifier.axioms import check_all_axioms, AxiomStatus
+        from ncg_verifier.axioms import AxiomStatus, check_all_axioms
 
         triple = self._make_h4_like_triple()
         report = check_all_axioms(triple)
@@ -410,7 +415,7 @@ class TestAntiNumerologyGate:
 
     def test_gate_result_passed_method(self):
         """GateResult.passed() returns True when no flags, False otherwise."""
-        from ncg_verifier.anti_numerology import GateResult, FormulaResult
+        from ncg_verifier.anti_numerology import FormulaResult, GateResult
 
         # empty result → passes
         empty = GateResult()
@@ -475,8 +480,9 @@ class TestAtlasLoader:
 
     def test_load_model_missing_file_raises(self, tmp_path):
         """load_model raises FileNotFoundError for missing file."""
-        from ncg_verifier.atlas_loader import load_model
         import pytest
+
+        from ncg_verifier.atlas_loader import load_model
         with pytest.raises(FileNotFoundError):
             load_model(tmp_path / "nonexistent.yaml")
 
@@ -509,7 +515,7 @@ class TestAtlasLoader:
 
     def test_nogo_checks_stub(self):
         """run_nogo_checks returns STUB results for each formula."""
-        from ncg_verifier.atlas_loader import NCGModel, FormulaSpec, run_nogo_checks
+        from ncg_verifier.atlas_loader import FormulaSpec, NCGModel, run_nogo_checks
 
         model = NCGModel(name="TestModel", version="1.0")
         model.formulas = [

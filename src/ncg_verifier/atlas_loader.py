@@ -27,10 +27,9 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import yaml  # pyyaml required; listed in pyproject.toml dependencies
-
 
 # ---------------------------------------------------------------------------
 # Schema constants
@@ -113,7 +112,7 @@ class ValidationError:
     """A schema validation error for one atlas entry field."""
     field: str
     message: str
-    entry_id: Optional[str] = None
+    entry_id: str | None = None
 
     def __str__(self) -> str:
         prefix = f"[{self.entry_id}] " if self.entry_id else ""
@@ -159,8 +158,8 @@ class AtlasEntry:
     model_name: str
     version: str
     date_added: str
-    date_updated: Optional[str] = None
-    maintainer: Optional[str] = None
+    date_updated: str | None = None
+    maintainer: str | None = None
 
     # Algebraic data
     algebra: str = ""
@@ -169,7 +168,7 @@ class AtlasEntry:
     dirac_operator_description: str = ""
     real_structure_J: str = ""
     grading_gamma: str = ""
-    KO_dimension: Optional[int] = None
+    KO_dimension: int | None = None
 
     # Obstruction data
     obstruction_type: Any = ""          # str or list[str]
@@ -179,14 +178,14 @@ class AtlasEntry:
     # Formal proof data
     proof_system: str = ""
     proof_status: str = ""
-    proof_path: Optional[str] = None
-    theorem_name: Optional[str] = None
-    admitted_count: Optional[int] = None
-    proof_notes: Optional[str] = None
+    proof_path: str | None = None
+    theorem_name: str | None = None
+    admitted_count: int | None = None
+    proof_notes: str | None = None
 
     # Literature and cross-references
     literature_citation: list[LiteratureCitation] = field(default_factory=list)
-    comparison_with_other_atlas_entries: Optional[str] = None
+    comparison_with_other_atlas_entries: str | None = None
     related_entries: list[str] = field(default_factory=list)
 
     # Raw data preserved for tooling
@@ -239,7 +238,7 @@ def validate_schema(entry: dict[str, Any]) -> list[ValidationError]:
                 continue
             errors.append(ValidationError(
                 field=f,
-                message=f"Required field missing or null.",
+                message="Required field missing or null.",
                 entry_id=eid,
             ))
 
@@ -508,8 +507,8 @@ class FormulaSpec:
     expression: str
     quantity: str = ""
     units: str = ""
-    pdg_value: Optional[float] = None
-    pdg_error: Optional[float] = None
+    pdg_value: float | None = None
+    pdg_error: float | None = None
     tag: str = ""
     source: str = ""
 
@@ -538,7 +537,7 @@ class NCGModel:
     name: str = ""
     version: str = ""
     source_file: str = ""
-    spectral_triple: Optional[SpectralTripleSpec] = None
+    spectral_triple: SpectralTripleSpec | None = None
     formulas: list[FormulaSpec] = field(default_factory=list)
 
     def formula_count(self) -> int:
@@ -590,7 +589,7 @@ def run_nogo_checks(model: NCGModel) -> list[NoGoCheckResult]:
     return results
 
 
-def load_model(path: "Path | str") -> NCGModel:
+def load_model(path: Path | str) -> NCGModel:
     """
     Load a YAML or JSON model specification and return an NCGModel (legacy).
 

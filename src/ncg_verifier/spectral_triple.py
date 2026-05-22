@@ -19,7 +19,7 @@ References:
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any, Optional
+from typing import Any
 
 
 class SpectralTriple(ABC):
@@ -118,7 +118,7 @@ class SpectralTriple(ABC):
         return self.__class__.__name__
 
     @property
-    def ko_dimension(self) -> Optional[int]:
+    def ko_dimension(self) -> int | None:
         """
         KO-dimension mod 8 of this spectral triple, if known.
         Returns None if not specified; the axiom checker will attempt to
@@ -127,7 +127,7 @@ class SpectralTriple(ABC):
         return None
 
     @property
-    def sign_triple(self) -> Optional[tuple[int, int, int]]:
+    def sign_triple(self) -> tuple[int, int, int] | None:
         """
         The sign triple (ε, ε', ε'') for the real structure J.
         ε   = sign of J²
