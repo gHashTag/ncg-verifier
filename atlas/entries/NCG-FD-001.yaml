@@ -1,0 +1,86 @@
+# NCG-FD-001: Fermion doubling in Lorentzian NCG
+# Source: V3_seed_entries.md (v1.0.0)
+# Atlas schema: schemas/atlas-entry-v1.yaml
+
+id: NCG-FD-001
+model_name: "Lorentzian NCG Standard Model — Wick rotation and irreducible fermion doubling"
+version: "0.1.0"
+date_added: "2025-07-01"
+maintainer: "trinity-s3ai contributors"
+
+algebra: "A = C(M) ⊗ A_F where A_F = M_4(ℂ) ⊕ M_2(ℂ) ⊕ M_3(ℂ), M is a Lorentzian 4-manifold"
+algebra_type: matrix_algebra
+hilbert_space_description: >
+  L²(M, S) ⊗ H_F (Krein space for Lorentzian signature).
+dirac_operator_description: >
+  Lorentzian Dirac D = γ^μ ∇_μ + D_F (indefinite metric).
+real_structure_J: >
+  Extended to Krein space via an antilinear operator satisfying modified
+  axioms (pseudo-Riemannian version).
+grading_gamma: "γ₅ in 4d Lorentzian sense."
+KO_dimension: 6  # target
+
+obstruction_type: fermion_doubling
+obstruction_statement: >
+  D'Andrea, Kurkov, and Lizzi (2016, DOI:10.1103/PhysRevD.94.025030) showed
+  that the Euclidean NCG spectral triple, when Wick-rotated to Lorentzian
+  signature, requires a two-step projection to recover the physical fermion
+  content: (1) projection onto mirror-fermion-free subspace and (2)
+  elimination of a remaining factor-of-2 doubling that appears only after the
+  Wick rotation. Specifically, the Spin(4)-invariant Euclidean formulation
+  contains a quadrupling (4× physical fermions), while the Lorentzian theory
+  after correct Wick rotation and step-1 projection contains a doubling
+  (2× physical fermions). Step-2 projection (eliminating the last factor)
+  breaks Euclidean Spin(4) covariance and must be performed after (not before)
+  Wick rotation, distinguishing it fundamentally from a gauge choice. The
+  candidate formal statement: for any Euclidean real spectral triple of KO-dim
+  6 satisfying the SM axioms, the Wick-rotated Lorentzian theory necessarily
+  has a residual factor-of-2 fermion multiplicity that cannot be removed by a
+  real-structure-compatible projection before Wick rotation.
+obstruction_informal: >
+  When you take the Euclidean version of the NCG Standard Model and rotate it
+  to Lorentzian signature (physical spacetime), you encounter extra fermion
+  copies. Some can be removed by a "mirror fermion" projection, but a second
+  doubling stubbornly remains. Removing it requires knowing you are already in
+  Lorentzian signature — you cannot get rid of it in the Euclidean formulation
+  first.
+
+proof_system: none
+proof_status: informal_proof
+proof_notes: >
+  The result is established in D'Andrea-Kurkov-Lizzi (2016) and further
+  analysed in Bochniak-Sitarz (2020, 2021). Bochniak-Sitarz propose a
+  modified non-product Dirac operator that avoids the doubling by construction
+  (a workaround rather than a proof of the obstruction). The formal version
+  would need to show that no product-type Lorentzian triple can avoid the
+  step-2 doubling.
+
+literature_citation:
+  - authors: ["D'Andrea, F.", "Kurkov, M.A.", "Lizzi, F."]
+    title: "Wick rotation and fermion doubling in NCG"
+    doi_or_arxiv: "DOI:10.1103/PhysRevD.94.025030"
+    year: 2016
+    relevance: main_result
+  - authors: ["Barrett, J.W."]
+    title: "Lorentzian version of NCG-SM"
+    doi_or_arxiv: "DOI:10.1063/1.2408400"
+    year: 2006
+    relevance: partial_result
+  - authors: ["Bochniak, A.", "Sitarz, A."]
+    title: "Spectral geometry for the SM without fermion doubling"
+    doi_or_arxiv: "DOI:10.1103/PhysRevD.101.075038"
+    year: 2020
+    relevance: related_model
+  - authors: ["Bochniak, A.", "Sitarz, A.", "Zalecki, P."]
+    title: "Spectral geometry for the SM in Lorentzian signature"
+    doi_or_arxiv: "DOI:10.1007/JHEP12(2021)142"
+    year: 2021
+    relevance: related_model
+
+comparison_with_other_atlas_entries: >
+  The same doubling problem appears in NCG-C2-001, but from the KO-dim 0
+  angle. NCG-FD-001 specifically addresses the Wick rotation mechanism,
+  making it a distinct obstruction in Lorentzian signature.
+
+related_entries:
+  - NCG-C2-001

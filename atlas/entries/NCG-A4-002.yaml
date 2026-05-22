@@ -1,0 +1,72 @@
+# NCG-A4-002: H4/600-cell + NCG σ-field obstruction (NGT2)
+# Source: V3_seed_entries.md (v1.0.0)
+# Atlas schema: schemas/atlas-entry-v1.yaml
+
+id: NCG-A4-002
+model_name: "H4/600-cell spectral triple — σ-field no-go"
+version: "1.0.0"
+date_added: "2025-07-01"
+maintainer: "trinity-s3ai contributors"
+
+algebra: "ℂ[2I]"  # group algebra of 2I
+algebra_type: group_algebra
+hilbert_space_description: "ℓ²(2I), dim = 120"
+dirac_operator_description: "Same adjacency Dirac as NCG-A4-001."
+real_structure_J: "Quaternionic involution, J² = +1."
+grading_gamma: "As in NCG-A4-001."
+KO_dimension: 6
+
+obstruction_type: sigma_field
+obstruction_statement: >
+  In the Chamseddine–Connes NCG Standard Model, the σ-field arises as a
+  unimodular inner fluctuation of the Dirac operator: D_A = D + A + JAJ^{-1}
+  where A is a Hermitian fluctuation. The unimodularity constraint on A forces
+  a specific scalar degree of freedom (the σ-field) that is distinct from the
+  Higgs. In the H4/600-cell triple, the space of 2I-equivariant self-adjoint
+  operators on ℓ²(2I) is spanned by elements of the group algebra, and the
+  degree-2 Coxeter invariant of H4 (the quadratic polynomial in root
+  coordinates) is constant on each 2I-orbit. There is therefore no equivariant
+  scalar fluctuation that can split the unimodular condition in the way
+  required for the σ-field. Formally: dim(EndEquiv_{2I}(ℓ²(2I))_{σ-type}) = 0,
+  where the "σ-type" refers to the representation type that would support a
+  unimodular-split scalar.
+obstruction_informal: >
+  The NCG σ-field is a specific scalar field that emerges when one removes
+  the unimodularity constraint on gauge fluctuations of the Dirac operator.
+  In the H4/600-cell model, the only invariant scalars come from the Coxeter
+  ring, and the degree-2 invariant is trivial on each 2I-orbit. There is no
+  room for the required non-trivial scalar splitting: the model is too
+  symmetric to host the σ-field.
+
+proof_system: Coq
+proof_status: formally_verified
+proof_path: "proofs/trinity/NoGoTheorems.v"
+theorem_name: "NGT2_sigma_field_nogo"
+admitted_count: 0
+proof_notes: >
+  Relies on UnimodularityAndSigma.v (Wave 5.3) for the structural lemmas
+  H4_degree2_is_constant_on_orbit and H4_a4_no_sigma_Higgs_split, both Qed.
+  The main theorem in NoGoTheorems.v chains these.
+
+literature_citation:
+  - authors: ["Chamseddine, A.H.", "Connes, A.", "van Suijlekom, W.D."]
+    title: "Beyond the spectral standard model: emergence of Pati-Salam"
+    doi_or_arxiv: "DOI:10.1007/JHEP11(2013)132"
+    year: 2013
+    relevance: background
+  - authors: ["trinity-s3ai contributors"]
+    title: "NoGoTheorems.v"
+    doi_or_arxiv: "https://github.com/gHashTag/trinity-s3ai"
+    year: 2025
+    relevance: main_result
+
+comparison_with_other_atlas_entries: >
+  Structurally related to NCG-PS-001, where the σ-field obstruction reappears
+  in a different algebraic context (Pati-Salam). The H4 obstruction is sharper
+  because the group algebra has no representation-theoretic room for the field.
+
+related_entries:
+  - NCG-A4-001
+  - NCG-A4-003
+  - NCG-A4-004
+  - NCG-PS-001

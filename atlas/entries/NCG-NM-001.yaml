@@ -1,0 +1,86 @@
+# NCG-NM-001: Boyle-Farnsworth J₃(𝕆) — Jordan geometry spectral obstruction
+# Source: V3_seed_entries.md (v1.0.0)
+# Atlas schema: schemas/atlas-entry-v1.yaml
+
+id: NCG-NM-001
+model_name: "Boyle-Farnsworth Jordan geometry (J₃(𝕆) exceptional Jordan algebra)"
+version: "0.1.0"
+date_added: "2025-07-01"
+maintainer: "trinity-s3ai contributors"
+
+algebra: "J₃(𝕆)"  # the exceptional Jordan algebra of 3×3 Hermitian matrices over the octonions 𝕆; non-associative, 27-dimensional real vector space — used not as a C*-algebra in the Connes sense but as the coordinate algebra of "Jordan geometry"
+algebra_type: jordan_algebra
+hilbert_space_description: >
+  Representation space of J₃(𝕆) as a Jordan module; the relevant Hilbert
+  space for particle physics would be the complexification of the minimal
+  faithful module.
+dirac_operator_description: >
+  No standard spectral triple Dirac is yet defined; the Farnsworth (2025)
+  construction gives a 2-point geometry for F₄ × F₄ as a proof of concept
+  (DOI:10.48550/arXiv.2503.10744).
+real_structure_J: >
+  Not yet defined in full generality; the Jordan structure provides a notion
+  of "real involution" via the Jordan identity but the spectral triple axioms
+  are not all satisfied.
+grading_gamma: "Not yet defined."  # TODO: not specified in V3 source
+KO_dimension: null  # Unknown / not applicable in standard sense; TODO: not specified in V3 source
+
+obstruction_type: other
+obstruction_statement: >
+  Candidate claim: The exceptional Jordan algebra J₃(𝕆) is non-associative;
+  the standard axioms of a Connes spectral triple require an associative
+  (C*-)algebra A. Therefore no spectral triple in the strict Connes sense can
+  have A = J₃(𝕆). Any "Jordan geometry" spectral triple based on J₃(𝕆) must
+  either (a) weaken the associativity axiom, thereby leaving the standard
+  Connes framework, or (b) replace J₃(𝕆) with an associative envelope that
+  loses the exceptional structure. In either case, the specific
+  phenomenological benefits attributed to the exceptional algebra — in
+  particular the connection to three fermion generations and the triality of
+  SO(8) — are not derivable within the Connes spectral triple framework as
+  currently formulated.
+obstruction_informal: >
+  Connes' formalism requires an associative algebra at its foundation. The
+  exceptional Jordan algebra is not associative, so it cannot play the role of
+  the algebra A in a standard spectral triple. Any construction that uses it
+  must break out of the standard framework, and once you do that, the no-go
+  theorems for standard spectral triples no longer apply — but neither do many
+  of the structural theorems that make NCG tractable.
+
+proof_system: none
+proof_status: candidate
+proof_notes: >
+  The non-associativity of J₃(𝕆) is a classical fact. The claim that this
+  prevents standard spectral triple formation is straightforward but requires
+  careful statement because of the distinction between the Jordan algebra
+  itself and its associative envelope. Boyle (2020, arXiv:2006.16265) and
+  Boyle-Farnsworth (2019, DOI:10.1088/1367-2630/ab9709) explicitly note this
+  distinction and advocate for "Jordan geometry" as a generalization.
+  Farnsworth (2025, DOI:10.48550/arXiv.2503.10744) constructed the first
+  concrete 2-point finite Jordan geometry. A formal obstruction proof would
+  close the question of whether J₃(𝕆) can be embedded in a standard
+  spectral triple.
+
+literature_citation:
+  - authors: ["Boyle, L."]
+    title: "The Standard Model, The Exceptional Jordan Algebra, and Triality"
+    doi_or_arxiv: "arXiv:2006.16265"
+    year: 2020
+    relevance: main_result
+  - authors: ["Boyle, L.", "Farnsworth, S."]
+    title: "The SM, the Pati-Salam model, and Jordan geometry"
+    doi_or_arxiv: "DOI:10.1088/1367-2630/ab9709"
+    year: 2019
+    relevance: main_result
+  - authors: ["Farnsworth, S."]
+    title: "The n-point Exceptional Universe"
+    doi_or_arxiv: "DOI:10.48550/arXiv.2503.10744"
+    year: 2025
+    relevance: partial_result
+
+comparison_with_other_atlas_entries: >
+  This entry addresses a foundational obstruction that sits "above" all the
+  other entries: it concerns whether the algebra type is admissible at all.
+  If confirmed, it would constrain the entire family of octonion-based NCG
+  models.
+
+related_entries: []

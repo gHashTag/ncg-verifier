@@ -1,0 +1,92 @@
+# atlas_index.yaml — Master index of all atlas entries
+# Atlas of NCG No-Go Theorems
+# Version: 1.0.0
+# Seed release: 2025-07-01
+
+atlas_version: "1.0.0"
+seed_release_date: "2025-07-01"
+entry_count: 10
+schema: "schemas/atlas-entry-v1.yaml"
+entries:
+  - id: NCG-A4-001
+    model_name: "H4/600-cell spectral triple — cosmological no-go"
+    obstruction_type: cosmology
+    proof_status: formally_verified
+    proof_system: Coq
+    KO_dimension: 6
+    date_added: "2025-07-01"
+    file: "atlas/entries/NCG-A4-001.yaml"
+  - id: NCG-A4-002
+    model_name: "H4/600-cell spectral triple — σ-field no-go"
+    obstruction_type: sigma_field
+    proof_status: formally_verified
+    proof_system: Coq
+    KO_dimension: 6
+    date_added: "2025-07-01"
+    file: "atlas/entries/NCG-A4-002.yaml"
+  - id: NCG-A4-003
+    model_name: "H4/600-cell spectral triple — chirality/vector-like no-go"
+    obstruction_type: chirality
+    proof_status: formally_verified
+    proof_system: Coq
+    KO_dimension: 6
+    date_added: "2025-07-01"
+    file: "atlas/entries/NCG-A4-003.yaml"
+  - id: NCG-A4-004
+    model_name: "H4/600-cell spectral triple — lepton mass hierarchy no-go"
+    obstruction_type: mass_hierarchy
+    proof_status: formally_verified
+    proof_system: Coq
+    KO_dimension: 6
+    date_added: "2025-07-01"
+    file: "atlas/entries/NCG-A4-004.yaml"
+  - id: NCG-D5-001
+    model_name: "Cl(0,8) spectral triple on T⁸ — chirality candidate"
+    obstruction_type: chirality
+    proof_status: candidate
+    proof_system: none
+    KO_dimension: 0
+    date_added: "2025-07-01"
+    file: "atlas/entries/NCG-D5-001.yaml"
+  - id: NCG-C2-001
+    model_name: "C-finite almost-commutative spectral triple — fermion doubling in KO-dim 0"
+    obstruction_type: fermion_doubling
+    proof_status: informal_proof
+    proof_system: informal
+    KO_dimension: 6
+    date_added: "2025-07-01"
+    file: "atlas/entries/NCG-C2-001.yaml"
+  - id: NCG-PS-001
+    model_name: "Spectral Pati-Salam model — gauge unification and σ-field tension"
+    obstruction_type:
+      - gauge_unification
+      - first_order
+    proof_status: candidate
+    proof_system: none
+    KO_dimension: 6
+    date_added: "2025-07-01"
+    file: "atlas/entries/NCG-PS-001.yaml"
+  - id: NCG-NM-001
+    model_name: "Boyle-Farnsworth Jordan geometry (J₃(𝕆) exceptional Jordan algebra)"
+    obstruction_type: other
+    proof_status: candidate
+    proof_system: none
+    KO_dimension: null
+    date_added: "2025-07-01"
+    file: "atlas/entries/NCG-NM-001.yaml"
+  - id: NCG-FD-001
+    model_name: "Lorentzian NCG Standard Model — Wick rotation and irreducible fermion doubling"
+    obstruction_type: fermion_doubling
+    proof_status: informal_proof
+    proof_system: none
+    KO_dimension: 6
+    date_added: "2025-07-01"
+    file: "atlas/entries/NCG-FD-001.yaml"
+  - id: NCG-DI-001
+    model_name: "Spectrally truncated NCG — dimensional reduction and mass hierarchy"
+    obstruction_type: mass_hierarchy
+    proof_status: candidate
+    proof_system: none
+    KO_dimension: 6
+    date_added: "2025-07-01"
+    file: "atlas/entries/NCG-DI-001.yaml"

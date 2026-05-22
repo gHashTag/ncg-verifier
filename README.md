@@ -92,6 +92,88 @@ ncg-verifier anti-numerology --dir proofs/
 
 ---
 
+## Atlas of NCG No-Go Theorems
+
+**M2 complete.** The `atlas/` directory contains 10 V3 seed entries in
+machine-readable YAML format, covering the known NCG-SM impossibility results.
+
+### Entry layout
+
+```
+atlas/
+├── atlas_index.yaml          — master index of all entries
+└── entries/
+    ├── NCG-A4-001.yaml       — H4/600-cell cosmology no-go (NGT1, Coq verified)
+    ├── NCG-A4-002.yaml       — H4/600-cell σ-field no-go (NGT2, Coq verified)
+    ├── NCG-A4-003.yaml       — H4/600-cell chirality no-go (NGT3, Coq verified)
+    ├── NCG-A4-004.yaml       — H4/600-cell mass hierarchy no-go (NGT4, Coq verified)
+    ├── NCG-D5-001.yaml       — Cl(0,8) on T⁸ chirality candidate
+    ├── NCG-C2-001.yaml       — Connes SM fermion doubling (informal proof)
+    ├── NCG-PS-001.yaml       — Pati-Salam gauge unification candidate
+    ├── NCG-NM-001.yaml       — J₃(𝕆) Jordan geometry obstruction candidate
+    ├── NCG-FD-001.yaml       — Lorentzian NCG fermion doubling (informal proof)
+    └── NCG-DI-001.yaml       — Spectral truncation mass hierarchy candidate
+```
+
+4 entries are `formally_verified` (NGT1–NGT4, Coq proofs in
+[trinity-s3ai](https://github.com/gHashTag/trinity-s3ai)); 6 are `candidate`
+or `informal_proof` targets for future formalization.
+
+### Python API
+
+```python
+from pathlib import Path
+from ncg_verifier.atlas_loader import load_entry, load_all, cross_reference_check
+
+# Load a single entry
+entry = load_entry(Path("atlas/entries/NCG-A4-001.yaml"))
+print(entry.id)                    # NCG-A4-001
+print(entry.proof_status)          # formally_verified
+print(entry.obstruction_types())   # ['cosmology']
+print(entry.is_confirmed_no_go())  # True
+print(entry.summary())
+
+# Load all 10 entries
+entries = load_all(Path("atlas/entries"))
+print(f"{len(entries)} entries loaded")
+
+# Check cross-references
+broken = cross_reference_check(entries)
+assert broken == [], f"Broken refs: {broken}"
+
+# Filter by status
+confirmed = [e for e in entries.values() if e.is_confirmed_no_go()]
+open_entries = [e for e in entries.values() if e.is_open()]
+print(f"Confirmed: {len(confirmed)}, Open: {len(open_entries)}")
+```
+
+### CLI
+
+```bash
+# List all atlas entries
+ncg-verifier atlas list
+
+# Show details of one entry
+ncg-verifier atlas show NCG-A4-001
+ncg-verifier atlas show NCG-PS-001
+
+# Use a custom atlas directory
+ncg-verifier atlas list --atlas-dir /path/to/atlas/entries
+```
+
+### Schema
+
+The YAML schema is defined in `schemas/atlas-entry-v1.yaml` and validated
+automatically by `load_entry()`. Required fields: `id`, `model_name`,
+`version`, `date_added`, `algebra`, `algebra_type`, `hilbert_space_description`,
+`dirac_operator_description`, `real_structure_J`, `grading_gamma`,
+`KO_dimension`, `obstruction_type`, `obstruction_statement`,
+`obstruction_informal`, `proof_system`, `proof_status`, `literature_citation`.
+
+V3 Atlas web entries: [https://github.com/gHashTag/trinity-s3ai](https://github.com/gHashTag/trinity-s3ai)
+
+---
+
 ## Architecture
 
 ```
@@ -100,8 +182,15 @@ src/ncg_verifier/
 ├── spectral_triple.py     — abstract base class: (A, H, D, γ, J)
 ├── axioms.py              — Connes' axiom checkers [STUB: M3, week 12]
 ├── anti_numerology.py     — anti-numerology gate (generalized from trinity-s3ai)
-├── atlas_loader.py        — YAML/JSON model loader [STUB: M2, week 6]
+├── atlas_loader.py        — Atlas YAML loader [M2 COMPLETE]
 └── cli.py                 — CLI entry point
+
+atlas/
+├── atlas_index.yaml       — master entry index
+└── entries/               — 10 V3 seed entries (NCG-*.yaml)
+
+schemas/
+└── atlas-entry-v1.yaml   — JSON Schema 2020-12 for atlas entries
 ```
 
 The pipeline is described in full in
@@ -126,8 +215,8 @@ See `examples/h4_600cell_failing.py` for a runnable demonstration.
 
 | Milestone | Weeks | Status |
 |-----------|-------|--------|
-| M1: Modular refactoring | 1–4 | **In progress (this alpha)** |
-| M2: Algebra parser | 3–6 | Stub |
+| M1: Modular refactoring | 1–4 | **Complete** |
+| M2: Atlas YAML loader + 10 V3 seed entries | 3–6 | **Complete (this PR)** |
 | M3: Axiom checker | 5–10 | Stub |
 | M4: Classification engine | 8–14 | Stub |
 | M5: Cross-prover validator | 12–20 | Planned |

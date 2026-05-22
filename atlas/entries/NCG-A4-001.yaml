@@ -1,0 +1,81 @@
+# NCG-A4-001: H4/600-cell + cosmology obstruction (NGT1)
+# Source: V3_seed_entries.md (v1.0.0)
+# Atlas schema: schemas/atlas-entry-v1.yaml
+
+id: NCG-A4-001
+model_name: "H4/600-cell spectral triple — cosmological no-go"
+version: "1.0.0"
+date_added: "2025-07-01"
+maintainer: "trinity-s3ai contributors"
+
+algebra: "ℂ[2I]"  # group algebra of the binary icosahedral group, order 120
+algebra_type: group_algebra
+hilbert_space_description: "H = ℓ²(2I) (regular representation), dim = 120"
+dirac_operator_description: >
+  Adjacency-type Dirac operator on the Cayley graph of 2I with respect to
+  the standard generating set; the operator is real, self-adjoint, and
+  2I-equivariant.
+real_structure_J: >
+  Quaternionic involution inherited from the embedding 2I ⊂ Sp(1) ≅ SU(2);
+  satisfies J² = +1 (KO-dimension 6 sign table).
+grading_gamma: >
+  γ = (-1)^{right-action parity} on ℓ²(2I); γ² = 1, {γ, D} = 0.
+KO_dimension: 6
+
+obstruction_type: cosmology
+obstruction_statement: >
+  Let φ = (1+√5)/2 be the golden ratio. Any formula of the form
+  f(φ, π, e) = φ^a · π^b · e^c (with a, b, c ∈ ℤ, |a|,|b|,|c| ≤ 200)
+  that is derived from H4/600-cell Coxeter invariants satisfies
+  |f(φ,π,e) - Ω_b h²| / σ_Ω > 600, where Ω_b h² = 0.022383 ± 0.000018
+  is the Planck 2018 baryon density. Equivalently, the Trinity formula
+  Ω_b^{Trinity} = φ^{-3} π^{-2} e^{-1} gives a value < 0.01, which is
+  falsified at > 600σ by Planck data. No adjustment of the exponents
+  (a,b,c) within the H4-invariant ring recovers the observed value within
+  experimental error.
+obstruction_informal: >
+  The H4 Coxeter group has 4 fundamental invariant degrees {2, 12, 20, 30},
+  giving rise to algebraic combinations of φ, π, e as "natural" scalar
+  quantities. None of these combinations is numerically compatible with the
+  measured baryon density Ω_b h² of the universe. This is a hard
+  falsification: the parametric family is too sparse to cover the observed
+  value.
+
+proof_system: Coq
+proof_status: formally_verified
+proof_path: "proofs/trinity/NoGoTheorems.v"
+theorem_name: "NGT1_cosmology_nogo"
+admitted_count: 0
+proof_notes: >
+  The Coq proof uses interval arithmetic (coq-interval) to verify tight
+  numerical bounds on φ^{-3} π^{-2} e^{-1} and then applies lra for the
+  sigma-distance inequality. Planck 2018 constants are hard-coded as
+  definitional constants with explicit DOI citation.
+
+literature_citation:
+  - authors: ["Chamseddine, A.H.", "Connes, A."]
+    title: "Why the Standard Model"
+    doi_or_arxiv: "arXiv:0706.3688"
+    year: 2007
+    relevance: background
+  - authors: ["Planck Collaboration"]
+    title: "Planck 2018 results VI"
+    doi_or_arxiv: "DOI:10.1051/0004-6361/201833910"
+    year: 2020
+    relevance: main_result
+  - authors: ["trinity-s3ai contributors"]
+    title: "SALVAGE.md and NoGoTheorems.v"
+    doi_or_arxiv: "https://github.com/gHashTag/trinity-s3ai"
+    year: 2025
+    relevance: main_result
+
+comparison_with_other_atlas_entries: >
+  Shares the same algebra and Hilbert space with NCG-A4-002 through
+  NCG-A4-004; differs only in the specific physical property being
+  obstructed. The cosmological obstruction is the most numerically sharp
+  (600σ), making it the strongest falsification in the seed set.
+
+related_entries:
+  - NCG-A4-002
+  - NCG-A4-003
+  - NCG-A4-004

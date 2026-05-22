@@ -1,0 +1,94 @@
+# NCG-PS-001: Pati-Salam via NCG — gauge unification obstruction
+# Source: V3_seed_entries.md (v1.0.0)
+# Atlas schema: schemas/atlas-entry-v1.yaml
+
+id: NCG-PS-001
+model_name: "Spectral Pati-Salam model (Chamseddine–Connes–van Suijlekom) — gauge unification and σ-field tension"
+version: "0.1.0"
+date_added: "2025-07-01"
+maintainer: "trinity-s3ai contributors"
+
+algebra: "A_{PS} = M_2(ℂ) ⊕ M_2(ℂ) ⊕ M_4(ℂ)"  # Pati-Salam finite algebra, giving SU(2)_L × SU(2)_R × SU(4)
+algebra_type: matrix_algebra
+hilbert_space_description: >
+  H_{PS}: 16 fermions in the (2,2,4) representation per generation,
+  3 generations.
+dirac_operator_description: >
+  D_{PS}: a 4-parameter family depending on the scalar (Higgs) content; may
+  or may not satisfy the first-order condition depending on the parameters.
+real_structure_J: "J² = -1, KO-dim 6."
+grading_gamma: "Standard particle/antiparticle grading."
+KO_dimension: 6
+
+obstruction_type:
+  - gauge_unification
+  - first_order
+obstruction_statement: >
+  Chamseddine, Connes, and van Suijlekom (2013) showed that removing the
+  first-order condition from the NCG-SM derivation forces the algebra to the
+  Pati-Salam structure. However, Aydemir, Minic, Sun, and Takeuchi (2015–2018)
+  demonstrated that the unification of Pati-Salam gauge couplings predicted by
+  the spectral action places conflicting demands on symmetry breaking scales:
+  the scale at which SU(2)_R × SU(4) → U(1)_Y × SU(3) is constrained to be
+  near or above the GUT scale, yet the right-handed W boson mass favoured by
+  LHC phenomenology requires M_{W_R} ~ TeV. These two requirements are in
+  direct tension: no single-step breaking pattern satisfying both the spectral
+  action unification conditions and the TeV-scale W_R hypothesis exists.
+  Candidate formalization target: prove formally that for the spectral
+  Pati-Salam model, there is no single-step breaking scale compatible with
+  both gauge unification (as implied by the spectral action boundary
+  conditions) and a TeV-scale right-handed W boson.
+obstruction_informal: >
+  The NCG-derived Pati-Salam model predicts exact gauge coupling unification,
+  but this unification requires the right-handed symmetry to break at a very
+  high energy — too high for the right-handed W boson to be observable at the
+  LHC. The two requirements (unification + TeV W_R) cannot be satisfied
+  simultaneously within the strict spectral action framework.
+
+proof_system: none
+proof_status: candidate
+proof_notes: >
+  The phenomenological tension is established in the published literature
+  (Aydemir et al. 2015, DOI:10.1142/S0217751X15502231; Aydemir et al. 2018,
+  DOI:10.1007/JHEP09(2018)117). A formal proof requires: (1) exact
+  renormalization group equations for the Pati-Salam spectral action, (2)
+  Coq/Lean 4 formalization of RG running, (3) proof that the system of
+  inequalities has no solution. Step (2) is the main bottleneck.
+
+literature_citation:
+  - authors: ["Chamseddine, A.H.", "Connes, A.", "van Suijlekom, W.D."]
+    title: "Beyond the spectral standard model: emergence of Pati-Salam"
+    doi_or_arxiv: "DOI:10.1007/JHEP11(2013)132"
+    year: 2013
+    relevance: main_result
+  - authors: ["Chamseddine, A.H.", "Connes, A.", "van Suijlekom, W.D."]
+    title: "Grand unification in the spectral Pati-Salam model"
+    doi_or_arxiv: "DOI:10.1007/JHEP11(2015)011"
+    year: 2015
+    relevance: partial_result
+  - authors: ["Aydemir, U.", "Minic, D.", "Sun, C.", "Takeuchi, T."]
+    title: "Pati-Salam unification from NCG and phenomenological consequences"
+    doi_or_arxiv: "DOI:10.1142/S0217751X15502231"
+    year: 2015
+    relevance: partial_result
+  - authors: ["Aydemir, U.", "Minic, D.", "Sun, C.", "Takeuchi, T."]
+    title: "Leptoquark phenomenology in the spectral Pati-Salam model"
+    doi_or_arxiv: "DOI:10.1007/JHEP09(2018)117"
+    year: 2018
+    relevance: related_model
+  - authors: ["Aydemir, U."]
+    title: "Unified Pati-Salam from NCG: Overview"
+    doi_or_arxiv: "Semantic Scholar 282921632"
+    year: 2025
+    relevance: background
+
+comparison_with_other_atlas_entries: >
+  Shares first_order obstruction type with the general NCG-SM when the
+  first-order condition is imposed. The NCG-DI-001 entry addresses a related
+  but distinct issue of dimensional reduction. Gauge unification constraints
+  are shared with any spectral action model. The σ-field tension is analogous
+  to NCG-A4-002.
+
+related_entries:
+  - NCG-A4-002
+  - NCG-DI-001
