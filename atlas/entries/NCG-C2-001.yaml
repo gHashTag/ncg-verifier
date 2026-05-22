@@ -1,0 +1,93 @@
+# NCG-C2-001: Connes C-finite spectral triples — 2-doubling problem
+# Source: V3_seed_entries.md (v1.0.0)
+# Atlas schema: schemas/atlas-entry-v1.yaml
+
+id: NCG-C2-001
+model_name: "C-finite almost-commutative spectral triple — fermion doubling in KO-dim 0"
+version: "0.1.0"
+date_added: "2025-07-01"
+maintainer: "trinity-s3ai contributors"
+
+algebra: "A_F = M_4(ℂ) ⊕ M_2(ℂ) ⊕ M_3(ℂ)"  # standard SM finite algebra
+algebra_type: matrix_algebra
+hilbert_space_description: >
+  H_F = M_4(ℂ) ⊕ M_4(ℂ) (96-dimensional bimodule, 48 fermion slots with
+  particle/antiparticle doubling).
+dirac_operator_description: >
+  Finite Dirac D_F with Yukawa matrices; the full triple includes the manifold
+  part (C(M), L²(M,S), D_M).
+real_structure_J: >
+  J_F: H_F → H_F, antilinear, J_F² = -1 for KO-dim 6; J_F D_F = D_F J_F.
+grading_gamma: >
+  γ_F = diag(1,1,1,-1,...) ∈ End(H_F) encoding the particle/antiparticle
+  split.
+KO_dimension: 6
+
+obstruction_type: fermion_doubling
+obstruction_statement: >
+  In the Connes–Chamseddine NCG Standard Model, the physical fermion action
+  ⟨Jψ, Dψ⟩ with ψ ∈ H_F counts each physical fermion four times (the
+  "quadrupling problem") due to the presence of the real structure J and the
+  grading. Barrett (2006, DOI:10.1063/1.2408400) showed that imposing
+  KO-dimension 6 with a Lorentzian signature resolves the doubling to a factor
+  of 2 via a Majorana-Weyl condition. The remaining factor of 2 (from
+  particle/antiparticle) requires an additional projection. The candidate
+  claim: for any finite real spectral triple of KO-dimension 0 (i.e. with
+  J² = +1, JD = DJ, Jγ = γJ), no antilinear Majorana-Weyl condition
+  compatible with all three sign equations simultaneously reduces the fermion
+  multiplicity from 4 to 1. A factor-of-2 irreducible doubling always remains.
+  Besnard (2019) showed that Barrett's KO-dim 0 solution is essentially unique
+  under mild assumptions.
+obstruction_informal: >
+  The NCG approach to the Standard Model naturally produces four copies of
+  each fermion in the action. Switching to KO-dimension 6 (as Connes proposed
+  in 2006) removes a factor of 2, but a remaining factor of 2 is harder to
+  eliminate. For KO-dimension 0 specifically, it has been argued (and
+  partially shown) that no consistent projection can remove both doubling
+  factors while preserving all the axioms of the spectral triple.
+
+proof_system: informal
+proof_status: informal_proof
+proof_notes: >
+  Besnard (2019) establishes uniqueness of the Barrett projection under
+  KO-dim 0 assumptions. The full statement that a factor-of-2 irreducible
+  doubling persists for all KO-dim 0 triples compatible with the SM Hilbert
+  space is not formally proved; it is established by case analysis in the
+  published literature (D'Andrea, Kurkov, Lizzi 2016; Bochniak, Sitarz 2020).
+  A Lean 4 formalization is a natural target.
+
+literature_citation:
+  - authors: ["Connes, A."]
+    title: "NCG and the SM with neutrino mixing"
+    doi_or_arxiv: "DOI:10.1088/1126-6708/2006/11/081"
+    year: 2006
+    relevance: main_result
+  - authors: ["Barrett, J.W."]
+    title: "Lorentzian version of NCG-SM"
+    doi_or_arxiv: "DOI:10.1063/1.2408400"
+    year: 2006
+    relevance: partial_result
+  - authors: ["D'Andrea, F.", "Kurkov, M.A.", "Lizzi, F."]
+    title: "Wick rotation and fermion doubling in NCG"
+    doi_or_arxiv: "DOI:10.1103/PhysRevD.94.025030"
+    year: 2016
+    relevance: partial_result
+  - authors: ["Bochniak, A.", "Sitarz, A."]
+    title: "Spectral geometry for the SM without fermion doubling"
+    doi_or_arxiv: "DOI:10.1103/PhysRevD.101.075038"
+    year: 2020
+    relevance: related_model
+  - authors: ["Besnard, F."]
+    title: "On the uniqueness of Barrett's solution"
+    doi_or_arxiv: "# TODO: not specified in V3 source"
+    year: 2019
+    relevance: partial_result
+
+comparison_with_other_atlas_entries: >
+  This entry is a "meta-obstruction" for the whole NCG-SM programme: the
+  doubling problem affects every entry that uses the Connes-Chamseddine finite
+  algebra. NCG-FD-001 addresses the same problem in the Lorentzian setting
+  specifically.
+
+related_entries:
+  - NCG-FD-001

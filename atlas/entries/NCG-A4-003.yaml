@@ -1,0 +1,76 @@
+# NCG-A4-003: H4/600-cell + chirality obstruction (NGT3)
+# Source: V3_seed_entries.md (v1.0.0)
+# Atlas schema: schemas/atlas-entry-v1.yaml
+
+id: NCG-A4-003
+model_name: "H4/600-cell spectral triple — chirality/vector-like no-go"
+version: "1.0.0"
+date_added: "2025-07-01"
+maintainer: "trinity-s3ai contributors"
+
+algebra: "ℂ[2I]"
+algebra_type: group_algebra
+hilbert_space_description: "ℓ²(2I), dim = 120"
+dirac_operator_description: "Adjacency-type Dirac on the Cayley graph of 2I."
+real_structure_J: "Quaternionic involution, J² = +1."
+grading_gamma: >
+  γ defined via eigenspace parity of the adjacency matrix; γ² = 1.
+KO_dimension: 6
+
+obstruction_type: chirality
+obstruction_statement: >
+  The 600-cell polytope admits a canonical antipodal involution ι: v ↦ -v
+  acting on its 120 vertices (elements of 2I ⊂ S³). This involution commutes
+  with the binary icosahedral group action and maps each vertex to its
+  antipode. As a consequence, the adjacency Dirac operator D_F on ℓ²(2I)
+  satisfies D_F ∘ ι* = ι* ∘ D_F, meaning the spectrum of D_F is symmetric:
+  spec(D_F) = -spec(D_F). Any positive-eigenvalue state has a corresponding
+  negative-eigenvalue partner related by ι*, producing a vector-like
+  (non-chiral) spectrum. The Distler–Garibaldi theorem (arXiv:0905.2658) on
+  the absence of chiral matter in E8 does not directly apply (H4 is a finite
+  Coxeter group, not a Lie algebra), but the antipodal argument gives an
+  equivalent structural obstruction for the 600-cell.
+obstruction_informal: >
+  The 600-cell has a perfect symmetry: every vertex has an antipodal partner
+  on the opposite side of the sphere. This antipodal symmetry forces the Dirac
+  spectrum to come in ±λ pairs — every left-handed fermion mode is paired with
+  a right-handed partner. The Standard Model requires a chiral (non-vector-like)
+  spectrum; the H4/600-cell cannot provide one without introducing an external
+  chirality-breaking mechanism.
+
+proof_system: Coq
+proof_status: formally_verified
+proof_path: "proofs/trinity/NoGoTheorems.v"
+theorem_name: "NGT3_chirality_nogo"
+admitted_count: 0
+proof_notes: >
+  The key structural lemma is in ChiralityAnalysis.v: the antipodal map
+  v ↦ -v commutes with the adjacency action, proved from the group-algebra
+  structure. The spectrum-symmetry consequence is formalized as an
+  anti-commutor equation γ D_F + D_F γ = 0 with γ itself defined via ι*.
+  Distler-Garibaldi inapplicability is noted in the file header as a
+  conceptual distinction.
+
+literature_citation:
+  - authors: ["Distler, J.", "Garibaldi, S."]
+    title: "There is no 'Theory of Everything' inside E8"
+    doi_or_arxiv: "arXiv:0905.2658"
+    year: 2009
+    relevance: related_model
+  - authors: ["trinity-s3ai contributors"]
+    title: "ChiralityAnalysis.v, NoGoTheorems.v"
+    doi_or_arxiv: "https://github.com/gHashTag/trinity-s3ai"
+    year: 2025
+    relevance: main_result
+
+comparison_with_other_atlas_entries: >
+  Closely related to NCG-D5-001 (Cl(0,8) on 8-torus), where chirality is also
+  the obstruction. The H4 obstruction comes from discrete antipodal symmetry;
+  the Cl(0,8) candidate obstruction would come from the periodicity structure
+  of real Clifford algebras.
+
+related_entries:
+  - NCG-A4-001
+  - NCG-A4-002
+  - NCG-A4-004
+  - NCG-D5-001

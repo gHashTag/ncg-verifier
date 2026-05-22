@@ -44,8 +44,6 @@ import re
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional
-
 
 # ---------------------------------------------------------------------------
 # Default configuration (mirrors upstream anti_numerology_gate.py)
@@ -141,7 +139,7 @@ class FormulaResult:
     def_name: str
     rhs_snippet: str
     atoms_found: list[str]
-    tag_found: Optional[str]
+    tag_found: str | None
     status: str           # PASS | FLAG | WHITELIST | STRUCTURAL
     reason: str = ""
 
@@ -233,12 +231,12 @@ class AntiNumerologyGate:
 
     def __init__(
         self,
-        numerology_atoms: Optional[list[str]] = None,
+        numerology_atoms: list[str] | None = None,
         min_atom_types: int = DEFAULT_MIN_ATOM_TYPES,
-        approved_tags: Optional[list[str]] = None,
-        structural_whitelist: Optional[frozenset[str]] = None,
-        skip_files: Optional[frozenset[str]] = None,
-        section_tag_markers: Optional[list[str]] = None,
+        approved_tags: list[str] | None = None,
+        structural_whitelist: frozenset[str] | None = None,
+        skip_files: frozenset[str] | None = None,
+        section_tag_markers: list[str] | None = None,
         file_suffix: str = ".v",
         comment_window: int = COMMENT_WINDOW,
     ) -> None:
@@ -350,7 +348,7 @@ class AntiNumerologyGate:
 
     def _find_tag_in_window(
         self, lines: list[str], line_no: int
-    ) -> Optional[str]:
+    ) -> str | None:
         """Search ±comment_window lines for any approved tag."""
         start = max(0, line_no - self.comment_window - 1)
         end = min(len(lines), line_no + self.comment_window)
@@ -416,7 +414,7 @@ class AntiNumerologyGate:
 
         return in_tagged
 
-    def _file_has_header_tag(self, lines: list[str]) -> Optional[str]:
+    def _file_has_header_tag(self, lines: list[str]) -> str | None:
         """Check for a file-level honesty tag in the first FILE_HEADER_LINES lines."""
         header = "\n".join(lines[:FILE_HEADER_LINES])
         header_clean = re.sub(r"\(\*|\*\)", "", header)
@@ -442,7 +440,7 @@ class AntiNumerologyGate:
         def_name: str,
         rhs: str,
         section_tagged: list[bool],
-        file_header_tag: Optional[str],
+        file_header_tag: str | None,
         full_text: str,
     ) -> FormulaResult:
         """Evaluate a single definition and return a FormulaResult."""
@@ -512,7 +510,7 @@ def _should_skip() -> bool:
     return False
 
 
-def main(argv: Optional[list[str]] = None) -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=(
             "Anti-numerology gate: detect unjustified phi/pi/e formulas "
@@ -543,7 +541,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     args = parser.parse_args(argv)
 
     gate = AntiNumerologyGate(file_suffix=args.suffix)
-    print(f"NCG-Verifier anti-numerology gate")
+    print("NCG-Verifier anti-numerology gate")
     print(f"Scanning: {args.dir.resolve()}")
     print()
 

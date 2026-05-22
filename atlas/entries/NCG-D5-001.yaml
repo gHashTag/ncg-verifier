@@ -1,0 +1,80 @@
+# NCG-D5-001: Cl(0,8) on 8-torus — chirality candidate
+# Source: V3_seed_entries.md (v1.0.0)
+# Atlas schema: schemas/atlas-entry-v1.yaml
+
+id: NCG-D5-001
+model_name: "Cl(0,8) spectral triple on T⁸ — chirality candidate"
+version: "0.1.0"
+date_added: "2025-07-01"
+maintainer: "trinity-s3ai contributors"
+
+algebra: "Cl(0,8)"  # real Clifford algebra of signature (0,8), dim = 256 as real vector space; acting as Cl(0,8) ⊗ C(T⁸) on the algebra side
+algebra_type: clifford_algebra
+hilbert_space_description: >
+  L²(T⁸, S) where S is the 16-dimensional irreducible real spinor module
+  of Cl(0,8).
+dirac_operator_description: >
+  Standard flat-torus Dirac operator D = Σᵢ γᵢ ∂_i where γᵢ are the 8
+  generators of Cl(0,8).
+real_structure_J: >
+  Real structure from the real structure of the spinor module; J² = +1
+  (KO-dimension 0 of Cl(0,8) itself, total KO-dim of the triple to be
+  determined).
+grading_gamma: >
+  The volume element ω = γ₁γ₂...γ₈ ∈ Cl(0,8) satisfies ω² = +1 since the
+  signature has 8 negative squares; this defines a ℤ/2 grading.
+KO_dimension: 0  # Cl(0,8) periodicity: Cl(0,8) ≅ M₁₆(ℝ), placing this at KO-dim 0 mod 8
+
+obstruction_type: chirality
+obstruction_statement: >
+  Candidate claim: The volume grading ω of Cl(0,8), when restricted to the
+  minimal left ideal (the irreducible representation), acts as +1 on all
+  spinors, because Cl(0,8) ≅ M₁₆(ℝ) has a unique irreducible representation
+  in which ω = +I₁₆. Consequently the grading operator γ = ω provides no
+  non-trivial chirality splitting: all 16 spinors have the same chirality.
+  This is a candidate obstruction; the precise statement needs verification
+  that no other grading structure (e.g. from a refined real structure) can
+  recover non-trivial chirality for SM fermions.
+obstruction_informal: >
+  Cl(0,8) has an 8-fold periodicity that places it at KO-dimension 0. Its
+  volume element acts as the identity on the unique spinor module, meaning all
+  fermions have the same chirality — the operator that should select left-
+  versus right-handed particles is trivial. This makes it impossible to
+  reproduce the chiral Standard Model from this algebra alone.
+
+proof_system: none
+proof_status: candidate
+proof_notes: >
+  The Clifford algebra isomorphism Cl(0,8) ≅ M₁₆(ℝ) is a standard result.
+  The claim about the volume element acting as +I follows from the dimension
+  formula for real representations. A formal Coq proof of the chirality
+  obstruction in this case requires formalizing Clifford algebra
+  representations (not yet in trinity-s3ai). Estimated effort: 3–6 months
+  for a dedicated contributor with Coq experience.
+
+literature_citation:
+  - authors: ["Dabrowski, L.", "D'Andrea, F.", "Sitarz, A."]
+    title: "The Standard Model in NCG: fundamental fermions as internal forms"
+    doi_or_arxiv: "arXiv:1703.05279"
+    year: 2018
+    relevance: background
+  - authors: ["Lizzi, F.", "Kurkov, M."]
+    title: "Clifford structures in NCG and the extended scalar sector"
+    doi_or_arxiv: "DOI:10.1103/PhysRevD.97.085024"
+    year: 2018
+    relevance: related_model
+  - authors: ["Furey, C."]
+    title: "An Algebraic Roadmap of Particle Theories"
+    doi_or_arxiv: "DOI:10.1002/andp.202400322"
+    year: 2024
+    relevance: related_model
+
+comparison_with_other_atlas_entries: >
+  Shares the chirality obstruction type with NCG-A4-003. The H4 obstruction
+  arises from discrete antipodal symmetry; this Cl(0,8) candidate comes from
+  the specific Clifford periodicity at dimension 8. A resolved proof would
+  establish a general pattern: chirality obstructions at Clifford-periodic
+  dimensions.
+
+related_entries:
+  - NCG-A4-003

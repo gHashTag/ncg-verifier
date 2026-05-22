@@ -1,0 +1,79 @@
+# NCG-A4-004: H4/600-cell + mass hierarchy obstruction (NGT4)
+# Source: V3_seed_entries.md (v1.0.0)
+# Atlas schema: schemas/atlas-entry-v1.yaml
+
+id: NCG-A4-004
+model_name: "H4/600-cell spectral triple — lepton mass hierarchy no-go"
+version: "1.0.0"
+date_added: "2025-07-01"
+maintainer: "trinity-s3ai contributors"
+
+algebra: "ℂ[2I]"
+algebra_type: group_algebra
+hilbert_space_description: "ℓ²(2I), dim = 120"
+dirac_operator_description: "2I-equivariant self-adjoint operator on ℓ²(2I)."
+real_structure_J: "J² = +1."
+grading_gamma: "As before (eigenspace parity of adjacency matrix)."
+KO_dimension: 6
+
+obstruction_type: mass_hierarchy
+obstruction_statement: >
+  The physical lepton mass ratios (PDG 2022) are m_μ/m_e ≈ 206.77 and
+  m_τ/m_e ≈ 3477.2. In the NCG framework, fermion masses arise as eigenvalues
+  of the finite Dirac operator D_F. For the H4/600-cell model, any
+  2I-equivariant D_F: ℓ²(2I) → ℓ²(2I) has its spectrum constrained to
+  integer combinations of eigenvalues of irreducible representations of 2I.
+  The nine irreducible representations of 2I have dimensions {1, 2, 2, 3, 3,
+  4, 4, 5, 6} and character values in ℤ[φ]. The maximum ratio of adjacent
+  non-zero eigenvalues of any 2I-equivariant Dirac operator is bounded by the
+  ratio of maximal to minimal non-zero representation dimensions, which is at
+  most 12 (from dimensional analysis of the representation ring). This bound
+  is far below the observed m_τ/m_e ≈ 3477. Therefore no 2I-equivariant Dirac
+  operator can reproduce the physical lepton mass hierarchy.
+obstruction_informal: >
+  Fermion masses in NCG come from eigenvalues of the finite Dirac operator.
+  If the Dirac operator must respect the 600-cell's symmetry group, its
+  spectrum can only take values dictated by the representation theory of the
+  binary icosahedral group. Those representations are too similar in size
+  (they range from dimension 1 to dimension 6) to produce the factor-of-3477
+  hierarchy between the tau lepton and the electron.
+
+proof_system: Coq
+proof_status: formally_verified
+proof_path: "proofs/trinity/NoGoTheorems.v"
+theorem_name: "NGT4_mass_hierarchy_nogo"
+admitted_count: 0
+proof_notes: >
+  The proof bounds the ratio of extreme representation dimensions of 2I and
+  uses interval arithmetic to show this bound is incompatible with the
+  observed lepton ratios. The argument is self-contained within CorePhi.v and
+  the representation-theoretic structure encoded in the Coq definitions.
+
+literature_citation:
+  - authors: ["Particle Data Group"]
+    title: "Review of Particle Physics (PDG 2022)"
+    doi_or_arxiv: "DOI:10.1093/ptep/ptac097"
+    year: 2022
+    relevance: main_result
+  - authors: ["trinity-s3ai contributors"]
+    title: "NoGoTheorems.v"
+    doi_or_arxiv: "https://github.com/gHashTag/trinity-s3ai"
+    year: 2025
+    relevance: main_result
+  - authors: ["Chamseddine, A.H.", "Connes, A."]
+    title: "Why the Standard Model"
+    doi_or_arxiv: "arXiv:0706.3688"
+    year: 2007
+    relevance: background
+
+comparison_with_other_atlas_entries: >
+  The mass hierarchy obstruction in NCG-A4-004 is specific to the H4 symmetry
+  group. The NCG-DI-001 candidate obstruction addresses a more general tension
+  between spectral truncation (dimensional reduction) and mass hierarchy in the
+  standard NCG-SM.
+
+related_entries:
+  - NCG-A4-001
+  - NCG-A4-002
+  - NCG-A4-003
+  - NCG-DI-001

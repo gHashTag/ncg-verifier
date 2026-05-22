@@ -1,0 +1,79 @@
+# NCG-DI-001: Dimensional reduction NCG → SM (van Suijlekom)
+# Source: V3_seed_entries.md (v1.0.0)
+# Atlas schema: schemas/atlas-entry-v1.yaml
+
+id: NCG-DI-001
+model_name: "Spectrally truncated NCG — dimensional reduction and mass hierarchy"
+version: "0.1.0"
+date_added: "2025-07-01"
+maintainer: "trinity-s3ai contributors"
+
+algebra: "A_Λ = P_Λ A P_Λ where P_Λ is the spectral projection of D onto eigenvalues |λ| ≤ Λ (Connes-van Suijlekom truncation scheme)"
+algebra_type: other  # non-unital truncated C*-algebra
+hilbert_space_description: >
+  H_Λ = P_Λ L²(M,S) ⊗ H_F (finite-dimensional after truncation).
+dirac_operator_description: >
+  D_Λ = P_Λ D P_Λ (truncated, no longer has continuous spectrum).
+real_structure_J: "Inherited from full triple, restricted to H_Λ."
+grading_gamma: "Inherited from full triple."
+KO_dimension: 6
+
+obstruction_type: mass_hierarchy
+obstruction_statement: >
+  The van Suijlekom spectral truncation framework (see "Noncommutative
+  Geometry and Particle Physics," Springer 2014/2024,
+  DOI:10.1007/978-3-031-59120-4) introduces a natural UV cut-off Λ and
+  defines an approximate geometry (A_Λ, H_Λ, D_Λ). As Λ → ∞ the full NCG-SM
+  geometry is recovered. The candidate obstruction: for any finite Λ, the
+  spectrally truncated Dirac operator D_Λ cannot reproduce the full Yukawa
+  matrix structure of the Standard Model. In particular, the deterministic
+  relationship between the truncation scale Λ and the mass eigenvalues of D_Λ
+  means that the hierarchy between the top Yukawa coupling (~1) and the
+  electron Yukawa coupling (~3×10⁻⁶) cannot be recovered from any spectrally
+  truncated finite geometry without fine-tuning that reintroduces the
+  hierarchy problem.
+obstruction_informal: >
+  When you "truncate" the noncommutative Standard Model at a finite energy
+  scale, the model becomes finite-dimensional and computable. But this
+  finiteness has a cost: the Dirac eigenvalues that encode fermion masses are
+  constrained by the truncation, and you cannot fit the huge ratio between the
+  top quark mass and the electron mass without adjusting parameters by hand —
+  which undermines the predictive power of the NCG approach.
+
+proof_system: none
+proof_status: candidate
+proof_notes: >
+  This obstruction is more speculative than the others. Van Suijlekom (2024
+  edition) does not claim the truncated model reproduces the full mass
+  hierarchy; the question is whether it is in principle possible. A formal
+  proof would require: (1) a Lean 4 formalization of spectral truncation, (2)
+  bounds on Dirac eigenvalue spreads under truncation, (3) comparison with
+  experimental Yukawa ratios.
+
+literature_citation:
+  - authors: ["van Suijlekom, W.D."]
+    title: "Noncommutative Geometry and Particle Physics"
+    doi_or_arxiv: "DOI:10.1007/978-3-031-59120-4"
+    year: 2024
+    relevance: main_result
+  - authors: ["van den Broek, T.", "van Suijlekom, W.D."]
+    title: "Supersymmetric QCD and noncommutative geometry"
+    doi_or_arxiv: "DOI:10.1007/JHEP03(2013)112"
+    year: 2013
+    relevance: background
+  - authors: ["Connes, A.", "van Suijlekom, W.D."]
+    title: "Tolerance relations and operator systems"
+    doi_or_arxiv: "DOI:10.48550/arXiv.2111.02903"
+    year: 2021
+    relevance: background
+
+comparison_with_other_atlas_entries: >
+  The mass hierarchy obstruction type is shared with NCG-A4-004, but the
+  mechanism is completely different. NCG-A4-004 uses group representation
+  theory (2I); NCG-DI-001 uses the spectral truncation bound on Dirac
+  eigenvalue ratios. Together they suggest that mass hierarchy is a systematic
+  challenge for the NCG approach across different model types.
+
+related_entries:
+  - NCG-A4-004
+  - NCG-PS-001
